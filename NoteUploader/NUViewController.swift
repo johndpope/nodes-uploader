@@ -92,9 +92,8 @@ class NUViewController: UIViewController, UIImagePickerControllerDelegate, UINav
 										if let error = task.error {
 											print("Error: \(error.localizedDescription)")
 										}
-
 										if let _ = task.result {
-											// Do something with uploadTask.
+											
 										}
 										return nil;
 			}
@@ -134,14 +133,8 @@ class NUViewController: UIViewController, UIImagePickerControllerDelegate, UINav
 	func presentAuthUIViewController() {
 		let config = AWSAuthUIConfiguration()
 		config.enableUserPoolsUI = true
-		// you can use properties like logoImage, backgroundColor to customize screen
-		// config.canCancel = false // prevent end user dismissal of the sign in screen
-
-		// you should have a navigation controller for your view controller
-		// the sign in screen is presented using the navigation controller
-
 		AWSAuthUIViewController.presentViewController(
-			with: navigationController!,  // put your navigation controller here
+			with: navigationController!,
 			configuration: config,
 			completionHandler: {(
 				_ signInProvider: AWSSignInProvider, _ error: Error?) -> Void in
@@ -158,8 +151,7 @@ class NUViewController: UIViewController, UIImagePickerControllerDelegate, UINav
 					})
 				}
 				else {
-					// end user faced error while logging in,
-					// take any required action here
+
 				}
 		})
 	}
@@ -185,10 +177,10 @@ class NUViewController: UIViewController, UIImagePickerControllerDelegate, UINav
 		}
 
 		let transferUtility = AWSS3TransferUtility.default()
-		let userS3BucketName = NUUser.user.username! + "-s3-image-bucket"
+		let userS3BucketName = "noteuploader-sample-images2"
 		transferUtility.downloadData(
 			fromBucket: userS3BucketName,
-			key: "portrait.jpg",
+			key: "username/portrait.jpg",
 			expression: nil,
 			completionHandler: completionHandler
 			).continueWith {
@@ -197,7 +189,6 @@ class NUViewController: UIViewController, UIImagePickerControllerDelegate, UINav
 				}
 
 				if let _ = task.result {
-					// Do something with downloadTask.
 
 				}
 				return nil;

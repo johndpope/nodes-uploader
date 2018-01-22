@@ -52,6 +52,7 @@ class NUTableViewController: UITableViewController {
 		setupTableView()
 	}
 
+//------test function-------//
 	func generateNoteData() {
 		let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
 		for index in 0..<5 {

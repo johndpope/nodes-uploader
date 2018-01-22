@@ -45,8 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if (!isInitialized) {
 			AWSSignInManager.sharedInstance().resumeSession(completionHandler: {
 				(result: Any?,  error: Error?) in
-
-				// print("Result: \(result)\n Error:\(error)")
 			})
 
 			isInitialized = true
